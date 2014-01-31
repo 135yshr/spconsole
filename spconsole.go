@@ -44,6 +44,7 @@ func main() {
 		case "version":
 		case "exit", "quit":
 			fmt.Println("bye...")
+			commandShutdown()
 			os.Exit(0)
 		default:
 		}
@@ -94,6 +95,11 @@ func commandRoll(commands []string) error {
 	sphero := spherogo.NewSphero(devideId)
 	sphero.Roll(speed, heading, state)
 	return nil
+}
+
+func commandShutdown() {
+	sphero := spherogo.NewSphero(devideId)
+	sphero.Sleep()
 }
 
 func string2color(param []string) (byte, byte, byte, error) {
